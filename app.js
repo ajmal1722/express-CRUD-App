@@ -3,45 +3,72 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
-
-// inbuild modules
-const members = require('./datas/members.js');
-const { error } = require('console');
-
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// MiddleWare
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Reading Files
 const indexPath = fs.readFileSync('./templates/index.ejs', 'utf-8');
+const formPage = fs.readFileSync('./form.html', 'utf-8');
+const jsonData = fs.readFileSync('./datas/users.json', 'utf-8')
+
+let userDatas = JSON.parse(jsonData);
+console.log(userDatas);
 
 // ROUT = HTTP METHOD + URL
 
-// Get All members
-app.get('/api/members', (req, res) => {
+// Get All members 
+// app.get('/api/members', (req, res) => {
+//     try {
+//         res.json(members) 
+//     } catch (error) {
+//         console.log('Error1 : ', error)
+//     }
+// });
+
+// Home page
+app.get('/', (req, res) => {
+    res.status(200).send(indexPath);
+});
+
+// Form page
+app.get('/form', (req, res) => {
+    res.status(200).send(formPage);
+})
+
+// Submit
+app.post('/submit', (req, res) => {
     try {
-        res.json(members) 
+        userDatas.push(req.body);
+        fs.writeFileSync('./datas/users.json', JSON.stringify(userDatas, null, 2), 'utf-8');
+        res.json(userDatas);
     } catch (error) {
-        console.log('Error1 : ', error)
+        console.log('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
-// Get Single members
-app.get('/api/members/:id', (req, res) => {
-    try {
-        const found = members.some(member => member.id === parseInt(req.params.id));
-        if (found) {
-            res.json(members.filter(member => member.id === parseInt(req.params.id)));    
-        } else {
-            res.status(400).send(`NO Member with Id of ${req.params.id}`)
-        }
 
-    } catch (error) {
-        console.log('Error2 : ', error)
-    }
-})
+// Get Single members
+// app.get('/api/members/:id', (req, res) => {
+//     try {
+//         const found = members.some(member => member.id === parseInt(req.params.id));
+//         if (found) {
+//             res.json(members.filter(member => member.id === parseInt(req.params.id)));    
+//         } else {
+//             res.status(400).send(`NO Member with Id of ${req.params.id}`)
+//         }
+
+//     } catch (error) {
+//         console.log('Error2 : ', error)
+//     }
+// })
 
 // Creating server
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))

@@ -1,0 +1,13 @@
+[
+  {
+    "name": "ajmal",
+    "age": 45
+  },
+  {
+    "name": "samshan",
+    "age": "46",
+    "phone": "8089459798",
+    "email": "Etfgg@gmail.com",
+    "gender": "Male"
+  }
+]
