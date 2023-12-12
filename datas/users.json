@@ -1,13 +1,23 @@
 [
   {
-    "name": "ajmal",
-    "age": 45
+    "name": "kswkam",
+    "age": "46",
+    "phone": "8089459798",
+    "email": "Etfgg@gmail.com",
+    "gender": "Male"
   },
   {
     "name": "samshan",
     "age": "46",
     "phone": "8089459798",
-    "email": "Etfgg@gmail.com",
-    "gender": "Male"
+    "email": "ajuajmal1722001@gmail.com",
+    "gender": "Female"
+  },
+  {
+    "name": "samshan",
+    "age": "46",
+    "phone": "8089459798",
+    "email": "ajuajmal1722001@gmail.com",
+    "gender": "Female"
   }
 ]

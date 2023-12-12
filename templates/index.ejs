@@ -25,11 +25,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
+                  <% userDatas.forEach(user => { %>
+                    <tr>
+                      <td><%= user.id %></td>
+                      <td><%= user.name %></td>
+                      <td><%= user.age %></td>
+                      <td><%= user.phone %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.gender %></td>
+                      <td></td>
+                    </tr>
+                  <% }); %>
                 </tbody>
               </table>
         </div>

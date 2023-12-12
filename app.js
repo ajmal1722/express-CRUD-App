@@ -2,6 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const ejs = require('ejs')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,7 +17,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Reading Files
 const indexPath = fs.readFileSync('./templates/index.ejs', 'utf-8');
 const formPage = fs.readFileSync('./form.html', 'utf-8');
-const jsonData = fs.readFileSync('./datas/users.json', 'utf-8')
+const jsonData = fs.readFileSync('./datas/users.json', 'utf-8');
+app.set('views', path.join(__dirname, 'templates'));
+app.set('view engine', 'ejs');
+
 
 let userDatas = JSON.parse(jsonData);
 console.log(userDatas);
@@ -34,7 +38,7 @@ console.log(userDatas);
 
 // Home page
 app.get('/', (req, res) => {
-    res.status(200).send(indexPath);
+    res.status(200).render('index', { userDatas });
 });
 
 // Form page
@@ -47,7 +51,7 @@ app.post('/submit', (req, res) => {
     try {
         userDatas.push(req.body);
         fs.writeFileSync('./datas/users.json', JSON.stringify(userDatas, null, 2), 'utf-8');
-        res.json(userDatas);
+        res.redirect('/form');
     } catch (error) {
         console.log('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
