@@ -24,7 +24,7 @@ app.set('view engine', 'ejs');
 
 
 let userDatas = JSON.parse(jsonData);
-console.log(userDatas);
+console.log(userDatas)
 
 // ROUT = HTTP METHOD + URL
 
@@ -48,7 +48,6 @@ app.get('/form', (req, res) => {
 })
 
 // Submit
-const nextUserId = 1;
 app.post('/submit', (req, res) => {
     try {
         const formData = req.body
@@ -61,6 +60,32 @@ app.post('/submit', (req, res) => {
         res.redirect('/form');
     } catch (error) {
         console.log('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Edit
+app.patch('/edit/:id', (req, res) => {
+    try {
+        const found = userDatas.filter(item => item.id === parseInt(req.params.id));
+
+        if (found.length > 0) {
+            const updDatas = req.body;
+
+            userDatas.forEach(user => {
+                if (user.id === parseInt(req.params.id)) {
+                    user.name = updDatas.name ? updDatas.name : user.name;
+                    user.age = updDatas.age ? updDatas.age : user.age;
+                    res.json({ message: 'User updated successfully', user});
+                }
+            });
+
+            
+        } else {
+            res.status(400).json(`No member with id of ${req.params.id}`);
+        }
+    } catch (error) {
+        console.log(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
