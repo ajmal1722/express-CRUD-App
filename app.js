@@ -24,7 +24,6 @@ app.set('view engine', 'ejs');
 
 
 let userDatas = JSON.parse(jsonData);
-console.log(userDatas)
 
 // ROUT = HTTP METHOD + URL
 
@@ -53,8 +52,7 @@ app.post('/submit', (req, res) => {
         const formData = req.body
         userDatas.push(formData);
 
-        // Generate a UUID for the user
-        formData.id = uuidv4();
+        formData.id = userDatas.length;
 
         fs.writeFileSync('./datas/users.json', JSON.stringify(userDatas, null, 2), 'utf-8');
         res.redirect('/form');
@@ -67,8 +65,9 @@ app.post('/submit', (req, res) => {
 // Edit
 app.get('/edit/:id', (req, res) => {
     try {
-        const userId = req.params.id;
-        const userToEdit = userDatas.find(user => user.id === parseInt(userId));
+        const userId = parseInt(req.params.id);
+        
+        const userToEdit = userDatas.find(user => parseInt(user.id) === userId);
 
         if (!userToEdit){
             return res.status(404).send(`User not found with the ID of ${userId}`);
@@ -81,6 +80,33 @@ app.get('/edit/:id', (req, res) => {
 });
 
 // Update
+app.post('/update/:id', (req, res) => {
+    try {
+        const userId = req.params.id;
+        const originalId = req.body.id;  // here .id is the name of input field of ID in edit.ejs
+
+        if (userId !== originalId) {
+            return res.status(400).send('invalid request')
+        }
+
+        const formData = req.body;
+        const userIndex = userDatas.findIndex(user => parseInt(user.id) === parseInt(userId));
+
+        if (userIndex === -1) {
+            return res.status(404).send('User not found');
+        }
+
+        userDatas[userIndex] = formData;
+        fs.writeFileSync('./datas/users.json', JSON.stringify(userDatas, null, 2), 'utf-8');
+
+        console.log('Data successfully updated in users.json:', userDatas);
+
+        res.redirect('/');
+    } catch (error) {
+        console.log('Error message : ', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 // Get Single members
 // app.get('/api/members/:id', (req, res) => {

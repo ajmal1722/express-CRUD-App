@@ -35,7 +35,7 @@
           <h2 class="pt-5">User Form</h2>
           <form action="/update/<%= userToEdit.id %>" method="post" onsubmit="return validateForm()">
             <div class="p-3">
-                <input type="hidden" name="originalId" value="<%= userToEdit.id %>">
+                <input type="hidden" name="id" value="<%= userToEdit.id %>">
               <input
                 name="name"
                 type="text"

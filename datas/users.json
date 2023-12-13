@@ -1,48 +1,26 @@
 [
   {
-    "name": "samshan",
+    "id": "2",
+    "name": " Ajmal muh",
     "age": "46",
     "phone": "8089459798",
-    "email": "ajuajmal1722001@gmail.com",
+    "email": "Etfgg@gmail.com",
+    "gender": "Male"
+  },
+  {
+    "id": "78",
+    "name": "fahiz ee",
+    "age": "12",
+    "phone": "4545465445",
+    "email": "Etfgg@gmail.com",
     "gender": "Female"
   },
   {
-    "name": "samshan",
-    "age": "46",
-    "phone": "8089459798",
-    "email": "ajuajmal1722001@gmail.com",
+    "id": "3",
+    "name": "minhaj",
+    "age": "78",
+    "phone": "4545465445",
+    "email": "Etfgg@gmail.com",
     "gender": "Female"
-  },
-  {
-    "name": "kswkam",
-    "age": "46",
-    "phone": "8089459798",
-    "email": "Etfgg@gmail.com",
-    "gender": "Male",
-    "id": "f7669d89-0efe-4187-9d9e-f2ee19e9b9e1"
-  },
-  {
-    "name": "Muhammed Ajmal ",
-    "age": "46",
-    "phone": "8089459798",
-    "email": "Etfgg@gmail.com",
-    "gender": "Male",
-    "id": 1
-  },
-  {
-    "name": "samshan",
-    "age": "46",
-    "phone": "8089459798",
-    "email": "Etfgg@gmail.com",
-    "gender": "Male",
-    "id": "dad69cd8-47d1-4570-aeb7-d57a2e3223b9"
-  },
-  {
-    "name": "samshan",
-    "age": "46",
-    "phone": "8089459798",
-    "email": "Etfgg@gmail.com",
-    "gender": "Male",
-    "id": "d567ea6f-fe6f-4753-966c-4700916ba9fd"
   }
 ]

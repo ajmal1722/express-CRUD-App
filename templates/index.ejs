@@ -27,6 +27,7 @@
             <table class="table text-center mb-3">
                 <thead>
                   <tr>
+                    <th class="py-4" scope="col">No</th>
                     <th class="py-4" scope="col">Name</th>
                     <th class="py-4" scope="col">Age</th>
                     <th class="py-4" scope="col">Phone</th>
@@ -38,6 +39,7 @@
                 <tbody>
                   <% userDatas.forEach(user => { %>
                     <tr>
+                      <td style="padding-top: 35px;"><%= user.id %></td>
                       <td style="padding-top: 35px;"><%= user.name %></td>
                       <td style="padding-top: 35px;"><%= user.age %></td>
                       <td style="padding-top: 35px;"><%= user.phone %></td>
@@ -60,7 +62,7 @@
     <div class="container">
       <div class="d-flex justify-content-end">
         <form action="/form">
-          <input class="btn btn-primary" type="submit" value="Home">
+          <input class="btn btn-primary" type="submit" value="Form">
         </form>
       </div>
     </div>
