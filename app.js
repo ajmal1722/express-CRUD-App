@@ -71,7 +71,7 @@ app.get('/edit/:id', (req, res) => {
         const userToEdit = userDatas.find(user => user.id === parseInt(userId));
 
         if (!userToEdit){
-            return res.status(404).send('User not found');
+            return res.status(404).send(`User not found with the ID of ${userId}`);
         }
         res.render('edit', { userToEdit });
     } catch (error) {
