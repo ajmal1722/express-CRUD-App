@@ -65,31 +65,22 @@ app.post('/submit', (req, res) => {
 });
 
 // Edit
-app.patch('/edit/:id', (req, res) => {
+app.get('/edit/:id', (req, res) => {
     try {
-        const found = userDatas.filter(item => item.id === parseInt(req.params.id));
+        const userId = req.params.id;
+        const userToEdit = userDatas.find(user => user.id === parseInt(userId));
 
-        if (found.length > 0) {
-            const updDatas = req.body;
-
-            userDatas.forEach(user => {
-                if (user.id === parseInt(req.params.id)) {
-                    user.name = updDatas.name ? updDatas.name : user.name;
-                    user.age = updDatas.age ? updDatas.age : user.age;
-                    res.json({ message: 'User updated successfully', user});
-                }
-            });
-
-            
-        } else {
-            res.status(400).json(`No member with id of ${req.params.id}`);
+        if (!userToEdit){
+            return res.status(404).send('User not found');
         }
+        res.render('edit', { userToEdit });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Internal Server Error' });
-    }
+    } 
 });
 
+// Update
 
 // Get Single members
 // app.get('/api/members/:id', (req, res) => {

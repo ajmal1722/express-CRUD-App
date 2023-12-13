@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User CRUD Web App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: rgba(12, 12, 87, 0.799);
+      }
+      .inp {
+        width: 280px;
+      }
+      .div-bord {
+        border: 1px solid black;
+        border-radius: 20px;
+      }
+      .btn-home {
+        margin-left: -170px;
+        margin-top: -100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center my-5">
+      <div class="d-flex justify-content-center">
+        <div class="bg-light div-bord mt-5" style="width: 380px">
+          <h2 class="pt-5">User Form</h2>
+          <form action="/update/<%= userToEdit.id %>" method="post" onsubmit="return validateForm()">
+            <div class="p-3">
+                <input type="hidden" name="originalId" value="<%= userToEdit.id %>">
+              <input
+                name="name"
+                type="text"
+                id="name"
+                placeholder="Name.."
+                value="<%= userToEdit.name %>"
+                class="fst-italic mt-2 p-2 border rounded inp"
+              /><br />
+              <small style="color: red" id="nameError"></small>
+              <input
+                name="age"
+                type="number"
+                id="age"
+                placeholder="Age.."
+                value="<%= userToEdit.age %>"
+                class="fst-italic mt-2 p-2 border rounded inp"
+              /><br />
+              <small style="color: red" id="ageError"></small>
+              <input
+                name="phone"
+                type="text"
+                id="phone"
+                placeholder="Phone.."
+                value="<%= userToEdit.phone %>"
+                class="fst-italic mt-2 p-2 border rounded inp"
+              /><br />
+              <small style="color: red" id="numberError"></small>
+              <input
+                name="email"
+                type="text"
+                id="email"
+                placeholder="Email.."
+                value="<%= userToEdit.email %>"
+                class="fst-italic mt-2 p-2 border rounded inp"
+              /><br />
+              <small style="color: red" id="emailError"></small>
+              <select
+                name="gender"
+                id="gender"
+                class="form-select mx-5 mt-2"
+                value="<%= userToEdit.gender %>"
+                aria-label="Default select example"
+                style="width: 260px"
+              >
+                <option selected>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select><br />
+              <small style="color: red" id="genderError"></small>
+            </div>
+            <div class="d-flex justify-content-end mx-5 mb-3">
+              <input
+                class="btn btn-primary px-4"
+                type="submit"
+                value="Update"
+              />
+            </div>
+          </form>
+          <form action="/">
+            <input
+              class="btn btn-success px-4 btn-home"
+              type="submit"
+              value="Home"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function validateForm() {
+        let name = document.getElementById("name").value;
+        let age = document.getElementById("age").value;
+        let phone = document.getElementById("phone").value;
+        let email = document.getElementById("email").value;
+        let gender = document.getElementById("gender").value;
+
+        let nameValid = /^[A-Za-z\s]{3,}$/.test(name);
+        let ageValid = /^\d+$/.test(age);
+        let phoneValid = /^\d{10,}$/.test(phone);
+        let emailValid = /^[\w.-]+@[\w-]+\.+[\w-]{2,}$/.test(email);
+
+        // Reset error messages
+        document.getElementById("nameError").innerHTML = "";
+        document.getElementById("ageError").innerHTML = "";
+        document.getElementById("numberError").innerHTML = "";
+        document.getElementById("emailError").innerHTML = "";
+        document.getElementById("genderError").innerHTML = "";
+
+        if (!nameValid) {
+          document.getElementById("nameError").innerHTML =
+            "Minimum 3 characters required";
+          return false;
+        }
+
+        if (!ageValid) {
+          document.getElementById("ageError").innerHTML =
+            "Enter a valid age";
+          return false;
+        }
+
+        if (!phoneValid) {
+          document.getElementById("numberError").innerHTML =
+            "Enter a valid phone number";
+          return false;
+        }
+
+        if (!emailValid) {
+          document.getElementById("emailError").innerHTML =
+            "Enter a valid email address";
+          return false;
+        }
+
+        if (gender === "Gender") {
+          document.getElementById("genderError").innerHTML = "Choose a gender";
+          return false;
+        }
+
+        // If all validations pass, return true
+        return true;
+      }
+    </script>
+  </body>
+</html>
