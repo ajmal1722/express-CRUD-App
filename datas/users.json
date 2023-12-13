@@ -1,26 +1,10 @@
 [
   {
-    "id": "2",
-    "name": " Ajmal muh",
+    "name": "kswkam",
     "age": "46",
     "phone": "8089459798",
     "email": "Etfgg@gmail.com",
-    "gender": "Male"
-  },
-  {
-    "id": "78",
-    "name": "fahiz ee",
-    "age": "12",
-    "phone": "4545465445",
-    "email": "Etfgg@gmail.com",
-    "gender": "Female"
-  },
-  {
-    "id": "3",
-    "name": "minhaj",
-    "age": "78",
-    "phone": "4545465445",
-    "email": "Etfgg@gmail.com",
-    "gender": "Female"
+    "gender": "Female",
+    "id": 1
   }
 ]

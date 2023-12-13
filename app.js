@@ -2,8 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const ejs = require('ejs');
-const { v4: uuidv4 } = require('uuid'); 
+const ejs = require('ejs'); 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -104,6 +103,26 @@ app.post('/update/:id', (req, res) => {
         res.redirect('/');
     } catch (error) {
         console.log('Error message : ', error);
+       
+    }
+});
+
+// Delete
+app.get('/delete/:id', (req, res) => {
+    try {
+        const userId = parseInt(req.params.id);
+        const index = userDatas.findIndex(user => parseInt(user.id) === userId);
+        
+        if (index !== -1){
+            userDatas.splice(index, 1);
+            for (let i = index; i < userDatas.length; i++) {
+                userDatas[i].id--;
+            }
+            fs.writeFileSync('./datas/users.json', JSON.stringify(userDatas, null, 2), 'utf-8');
+            res.status(200).redirect('/')
+        }
+    } catch (error) {
+        console.log('Error Message : ', error); 
         res.status(500).json({ error: 'Internal Server Error' });
     }
 })
