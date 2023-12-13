@@ -2,7 +2,8 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const ejs = require('ejs')
+const ejs = require('ejs');
+const { v4: uuidv4 } = require('uuid'); 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -47,9 +48,15 @@ app.get('/form', (req, res) => {
 })
 
 // Submit
+const nextUserId = 1;
 app.post('/submit', (req, res) => {
     try {
-        userDatas.push(req.body);
+        const formData = req.body
+        userDatas.push(formData);
+
+        // Generate a UUID for the user
+        formData.id = uuidv4();
+
         fs.writeFileSync('./datas/users.json', JSON.stringify(userDatas, null, 2), 'utf-8');
         res.redirect('/form');
     } catch (error) {
