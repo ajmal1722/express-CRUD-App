@@ -24,17 +24,6 @@ app.set('view engine', 'ejs');
 
 let userDatas = JSON.parse(jsonData);
 
-// ROUT = HTTP METHOD + URL
-
-// Get All members 
-// app.get('/api/members', (req, res) => {
-//     try {
-//         res.json(members) 
-//     } catch (error) {
-//         console.log('Error1 : ', error)
-//     }
-// });
-
 // Home page
 app.get('/', (req, res) => {
     res.status(200).render('index', { userDatas });
@@ -43,7 +32,7 @@ app.get('/', (req, res) => {
 // Form page
 app.get('/form', (req, res) => {
     res.status(200).send(formPage);
-})
+}) 
 
 // Submit
 app.post('/submit', (req, res) => {
@@ -126,21 +115,6 @@ app.get('/delete/:id', (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 })
-
-// Get Single members
-// app.get('/api/members/:id', (req, res) => {
-//     try {
-//         const found = members.some(member => member.id === parseInt(req.params.id));
-//         if (found) {
-//             res.json(members.filter(member => member.id === parseInt(req.params.id)));    
-//         } else {
-//             res.status(400).send(`NO Member with Id of ${req.params.id}`)
-//         }
-
-//     } catch (error) {
-//         console.log('Error2 : ', error)
-//     }
-// })
 
 // Creating server
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))
