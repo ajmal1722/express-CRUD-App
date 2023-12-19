@@ -1,0 +1,25 @@
+{
+  "name": "express-crud-app",
+  "version": "1.0.0",
+  "description": "CRUD App using express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajmal1722/express-CRUD-App.git"
+  },
+  "author": "Muhammed Ajmal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajmal1722/express-CRUD-App/issues"
+  },
+  "homepage": "https://github.com/ajmal1722/express-CRUD-App#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "uuid": "^9.0.1"
+  }
+}
