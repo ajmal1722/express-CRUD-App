@@ -8,11 +8,19 @@
     "id": 1
   },
   {
-    "name": " Ajmal ",
-    "age": "27",
-    "phone": "4545465445",
-    "email": "Etfgg@gmail.com",
+    "name": "Muhammed Ajmal",
+    "age": "46",
+    "phone": "8089459798",
+    "email": "agjd@ds.com",
     "gender": "Male",
     "id": 2
+  },
+  {
+    "name": "Muhammed Ajmal",
+    "age": "46",
+    "phone": "8089459798",
+    "email": "Etf@gmail.com",
+    "gender": "Male",
+    "id": 3
   }
 ]
